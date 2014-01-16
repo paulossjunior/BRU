@@ -1,1 +1,1 @@
-web:    play run --http.port=8080 8080
+web:    play run --http.port=9000 9000
