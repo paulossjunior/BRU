@@ -1,0 +1,36 @@
+@(categorias: List[Categoria]) @main("Categoria") {
+
+
+
+ @if(flash.contains("success")){
+
+<div class="alert alert-warning alert-dismissable">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <strong>Mensagem:</strong> @flash.get("success")
+</div>
+
+
+ }
+      
+
+<a href="@routes.ControleCategoria.indexCadastrar"> Cadastrar </a>
+
+<table>
+	<tr>
+		<th>Nome</th>
+		<th>Comandos</th>
+	</tr>
+	@for(categoria <- categorias) {
+	<tr>
+		<td>@categoria.getNome()</td>
+		<td>
+		<a href="@routes.ControleCategoria.editar(categoria.getId())">Editar</a>|
+		<a href="@routes.ControleCategoria.excluir(categoria.getId())">Excluir</a></td> 
+	</tr>
+
+	}
+</table>
+
+
+
+}

@@ -1,0 +1,43 @@
+@(GerenteCompraForm: Form[GerenteCompra])
+@import helper._
+@import helper.twitterBootstrap._
+
+@main("Cadastro Gerente de Compra") {
+
+
+   <div class="page-header">
+  	<h1>Novo Gerente de Compra</h1>
+  </div>
+
+@helper.form(action = routes.ControleGerenteCompra.salvar()) {
+<fieldset>
+	@helper.inputText(
+		GerenteCompraForm("nome"),
+		'_label -> "Nome",
+		'_showConstraints -> false
+		) 
+	@helper.inputText(
+		GerenteCompraForm("login"),
+		'_label -> "Login",
+		'_showConstraints -> false
+	)
+	
+	@helper.inputPassword(
+		GerenteCompraForm("senha"),
+		'_label -> "Senha",
+		'_showConstraints -> false
+		) 
+	
+	@select(GerenteCompraForm("categoria.id"),
+     options(models.Categoria.categorias),
+     '_default -> "--- Escolha uma Categoria ---",
+     'id -> "categoria",
+     '_label -> "Categoria",
+     '_showConstraints -> false)
+	
+</fieldset>   
+     <div class="actions">
+            <input type="submit" class="btn btn-primary" value="Cadastrar">
+    </div>
+  }
+}

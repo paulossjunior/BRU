@@ -1,0 +1,26 @@
+@(campi: List[Campus]) 
+
+ @main("Campus") {
+
+<a href="@routes.ControleCampus.novo"> Cadastrar </a>
+
+<table>
+	<tr>
+		<th>Nome</th>
+		<th>Comandos</th>
+	</tr>
+	@for(campus <- campi) {
+	<tr>
+		<td>@campus.getNome()</td>
+		<td>
+		<a href="@routes.ControleCampus.editar(campus.getId())">Editar</a>|
+		<a href="@routes.ControleCampus.excluir(campus.getId())">Excluir</a></td> 
+	</tr>
+
+	}
+
+</table>
+
+
+
+}

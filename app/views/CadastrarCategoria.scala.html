@@ -1,0 +1,17 @@
+@(categoria: Categoria)
+
+@main("Welcome to Play") {
+
+
+<form action="@routes.ControleCategoria.salvar" method="post">
+
+ <input type="text" name="nome" value="@categoria.getNome()">
+ 
+ <input type="hidden" name="id" value="@categoria.getId()">
+ 
+ <button type="submit">Salvar</button> 
+
+</form>
+
+
+}

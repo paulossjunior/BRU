@@ -1,0 +1,17 @@
+@(campus: Campus)
+
+@main("Welcome to Play") {
+
+
+<form action="@routes.ControleCampus.salvar" method="post">
+
+ <input type="text" name="nome" value="@campus.getNome()">
+ 
+ <input type="hidden" name="id" value="@campus.getId()">
+ 
+ <button type="submit">Salvar</button> 
+
+</form>
+
+
+}

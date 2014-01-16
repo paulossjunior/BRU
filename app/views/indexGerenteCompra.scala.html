@@ -1,0 +1,27 @@
+@(gerenteCompras: List[GerenteCompra]) @main("Cadastro Gerente Compras") {
+<a href="@routes.ControleGerenteCompra.indexCadastrar"> Cadastrar Gerente </a>
+
+<table>
+	<tr>
+		<th>Nome</th>
+		<th>Login</th>
+		<th>Senha</th>
+		<th>Categoria</th>
+		<th>Comandos</th>
+	</tr>
+	@for(var_gerenteCompras <- gerenteCompras) {
+	<tr>
+		<td>@var_gerenteCompras.getNome()</td>
+		<td>@var_gerenteCompras.getLogin()</td>
+		<td>@var_gerenteCompras.getSenha()</td>
+		<td>@var_gerenteCompras.getCategoria().getNome()</td>
+		<td>
+		<a href="@routes.ControleGerenteCompra.editar(var_gerenteCompras.getId())">Editar</a>|
+		<a href="@routes.ControleGerenteCompra.excluir(var_gerenteCompras.getId())">Excluir</a></td> 
+	</tr>
+
+	}
+
+</table>
+
+}
