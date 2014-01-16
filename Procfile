@@ -1,1 +1,1 @@
-web:    play run --http.port=9000
+web: target/start -Dhttp.port=$PORT $JAVA_OPTS
