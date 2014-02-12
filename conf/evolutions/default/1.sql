@@ -18,9 +18,9 @@ create table categoria (
 create table gerente_compra (
   id                        bigint not null,
   nome                      varchar(255),
-  login                     varchar(255),
-  categoria_id              bigint,
   senha                     varchar(255),
+  email                     varchar(255),
+  categoria_id              bigint,
   campus_id                 bigint,
   constraint pk_gerente_compra primary key (id))
 ;

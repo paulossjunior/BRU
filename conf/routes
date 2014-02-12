@@ -4,9 +4,13 @@
 
 # Home page
 GET     /                           controllers.Application.index()
+POST 	/signin						controllers.Application.signIn()
+GET 	/principal					controllers.ControlePrincipal.index()
+
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
+
 
 GET  /categoria				            controllers.ControleCategoria.index() 
 GET  /categoria/cadastrar				controllers.ControleCategoria.indexCadastrar()
@@ -26,3 +30,18 @@ POST /campus/salvar 					controllers.ControleCampus.salvar()
 GET  /campus/novo						controllers.ControleCampus.novo()
 GET  /campus/editar/:id 				controllers.ControleCampus.editar(id: Long)
 GET  /campus/excluir/:id 				controllers.ControleCampus.excluir(id: Long)
+
+
+
+GET  /unidade							controllers.ControleUnidade.index()
+GET  /unidade/cadastrar					controllers.ControleUnidade.indexCadastrar()
+POST /unidade/salvar 					controllers.ControleUnidade.salvar()
+GET  /unidade/editar/:id 				controllers.ControleUnidade.editar(id: Long)
+GET  /unidade/excluir/:id 				controllers.ControleUnidade.excluir(id: Long)
+
+
+GET  /produto							controllers.ControleProduto.index()
+GET  /produto/cadastrar					controllers.ControleProduto.indexCadastrar()
+POST /produto/salvar 					controllers.ControleProduto.salvar()
+GET  /produto/editar/:id 				controllers.ControleProduto.editar(id: Long)
+GET  /produto/excluir/:id 				controllers.ControleProduto.excluir(id: Long)

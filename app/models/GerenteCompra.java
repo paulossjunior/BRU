@@ -1,5 +1,7 @@
 package models;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -9,19 +11,11 @@ import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
 
 @Entity
-public class GerenteCompra extends Model {
-	@Id
-	private Long id;
+public class GerenteCompra extends Usuario{
 
-	@Required
-	private String nome;
-
-	private String login;
-	
 	@OneToOne
 	private Categoria categoria;
 
-	private String senha;
 	
 	@OneToOne
 	private Campus campus;
@@ -41,38 +35,7 @@ public class GerenteCompra extends Model {
 	public static Finder<Long, GerenteCompra> find = new Finder<Long, GerenteCompra>(
 			Long.class, GerenteCompra.class);
 
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
+	
 	public Campus getCampus() {
 		return campus;
 	}
@@ -81,4 +44,19 @@ public class GerenteCompra extends Model {
 		this.campus = campus;
 	}	
 	
+	public static List<GerenteCompra> findAll()
+	{
+		return find.all();
+	}
+	
+	public static GerenteCompra findById(Long id)
+	{
+		return find.byId(id);
+	}
+	public static  GerenteCompra retrive (String email, String senha)
+	{
+		return find.where().eq("email", email).eq("senha",senha).findUnique();
+	}
+
 }
+

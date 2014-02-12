@@ -4,40 +4,133 @@
 
 @main("Cadastro Gerente de Compra") {
 
+<div id="wrapper">
+
+	<nav class="navbar navbar-default navbar-static-top" role="navigation"
+		style="margin-bottom: 0">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target=".sidebar-collapse">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="@routes.ControlePrincipal.index">BRU::..</a>
+		</div>
+		<!-- /.navbar-header -->
+
+		<ul class="nav navbar-top-links navbar-right">
+			<li class="dropdown"><a class="dropdown-toggle"
+				data-toggle="dropdown" href="#"> <i class="fa fa-user fa-fw"></i>
+					<i class="fa fa-caret-down"></i>
+			</a>
+				<ul class="dropdown-menu dropdown-user">
+					<li><a href="@routes.Application.index"><i
+							class="fa fa-sign-out fa-fw"></i> Logout</a></li>
+				</ul> <!-- /.dropdown-user --></li>
+			<!-- /.dropdown -->
+		</ul>
+		<!-- /.navbar-top-links -->
+
+	</nav>
+	<!-- /.navbar-static-top -->
+
+	<nav class="navbar-default navbar-static-side" role="navigation">
+		<div class="sidebar-collapse">
+			
+					<ul class="nav nav-second-level">
+						<li><a href="@routes.ControleCampus.index">Campus</a></li>
+						<li><a href="@routes.ControleCategoria.index">Categoria
+								do Produto</a></li>
+						<li><a href="@routes.ControleProduto.index">Especificacao
+								de Produto</a></li>
+						<li><a href="@routes.ControleGerenteCompra.index">Responsavel
+								Setorial</a></li>
+						<li><a href="@routes.ControleUnidade.index">Unidade de
+								Medida</a></li>
+					</ul> <!-- /.nav-second-level --></li>
+
+			
+			<!-- /#side-menu -->
+		</div>
+		<!-- /.sidebar-collapse -->
+	</nav>
+	<!-- /.navbar-static-side -->
+
+	<div id="page-wrapper">
+		<div class="row">
+			<div class="col-lg-12">
+			<h1>Cadastro Responsavel Setorial</h1>
+				@helper.form(action = routes.ControleGerenteCompra.salvar()) {
+				<fieldset>
+					@helper.inputText(
+						GerenteCompraForm("nome"),
+						'_label -> "Nome",
+						'_showConstraints -> false
+						) 
+					@helper.inputText(
+						GerenteCompraForm("email"),
+						'_label -> "Email",
+						'_showConstraints -> false
+						) 
+					@helper.inputPassword(
+						GerenteCompraForm("senha"),
+						'_label -> "Senha",
+						'_showConstraints -> false
+						)
+					
+					
+					@select(GerenteCompraForm("categoria.id"),
+				     options(models.Categoria.categorias),
+				     '_default -> "--- Escolha uma Categoria ---",
+				     'id -> "categoria",
+				     '_label -> "Categoria",
+				     '_showConstraints -> false)
+				     
+				     @select(GerenteCompraForm("campus.id"),
+				     options(models.Campus.fCampus),
+				     '_default -> "--- Escolha um Campi ---",
+				     'id -> "campus",
+				     '_label -> "Campus",
+				     '_showConstraints -> false)
+					
+				</fieldset>   
+				     <div class="actions">
+				            <input type="submit" class="btn btn-primary" value="Cadastrar">
+				    </div>
+				  }
+
+
+					<!-- /.panel -->
+			</div>
+		</div>
+		<!-- /.row -->
+	</div>
+	<!-- /#page-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<!-- Core Scripts - Include with every page -->
+<script src="js/jquery-1.10.2.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+
+<!-- Page-Level Plugin Scripts - Dashboard -->
+<script src="js/plugins/morris/raphael-2.1.0.min.js"></script>
+<script src="js/plugins/morris/morris.js"></script>
+
+<!-- SB Admin Scripts - Include with every page -->
+<script src="js/sb-admin.js"></script>
+
+<!-- Page-Level Demo Scripts - Dashboard - Use for reference -->
+<script src="js/demo/dashboard-demo.js"></script>
+
+
 
    <div class="page-header">
   	<h1>Novo Gerente de Compra</h1>
   </div>
 
-@helper.form(action = routes.ControleGerenteCompra.salvar()) {
-<fieldset>
-	@helper.inputText(
-		GerenteCompraForm("nome"),
-		'_label -> "Nome",
-		'_showConstraints -> false
-		) 
-	@helper.inputText(
-		GerenteCompraForm("login"),
-		'_label -> "Login",
-		'_showConstraints -> false
-	)
-	
-	@helper.inputPassword(
-		GerenteCompraForm("senha"),
-		'_label -> "Senha",
-		'_showConstraints -> false
-		) 
-	
-	@select(GerenteCompraForm("categoria.id"),
-     options(models.Categoria.categorias),
-     '_default -> "--- Escolha uma Categoria ---",
-     'id -> "categoria",
-     '_label -> "Categoria",
-     '_showConstraints -> false)
-	
-</fieldset>   
-     <div class="actions">
-            <input type="submit" class="btn btn-primary" value="Cadastrar">
-    </div>
-  }
+
 }

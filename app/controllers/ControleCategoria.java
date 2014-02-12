@@ -2,6 +2,7 @@ package controllers;
 
 import java.util.List;
 
+import models.Campus;
 import models.Categoria;
 import play.data.Form;
 import play.mvc.Controller;
@@ -10,6 +11,8 @@ import views.html.CadastrarCategoria;
 import views.html.indexCategoria;
 
 public class ControleCategoria extends Controller{
+	
+	private static final Form<Categoria> CategoriaForm = Form.form(Categoria.class);
 
 	public static Result index() {
 		
@@ -19,7 +22,7 @@ public class ControleCategoria extends Controller{
     }
 	
 	public static Result indexCadastrar() {
-        return ok(CadastrarCategoria.render(new Categoria()));
+        return ok(CadastrarCategoria.render(CategoriaForm));
     }
 	
 	
@@ -47,7 +50,7 @@ public class ControleCategoria extends Controller{
 	{
 		Categoria categoria = Categoria.findById(id);
 		
-		return ok(CadastrarCategoria.render(categoria));
+		return ok(CadastrarCategoria.render(CategoriaForm));
 	}
 	
 	public static Result excluir(Long id)

@@ -1,6 +1,9 @@
 package models;
 
+import java.util.LinkedHashMap;
+
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -47,6 +50,23 @@ public class Unidade extends Model {
 		this.produto = produto;
 	}
 	
+	public static Map<String, String> unidades() {
+		LinkedHashMap<String, String> vals = new LinkedHashMap<String, String>();
+
+		for (Unidade unidade : find.all()) {
+			vals.put(unidade.getId().toString(), unidade.getNome());
+		}
+		return vals;
+
+	}
+	public static List<Unidade> findAll()
+	{
+		return find.all();
+	}
 	
+	public static Unidade findById(Long id)
+	{
+		return find.byId(id);
+	}
 
 }

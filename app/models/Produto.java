@@ -1,5 +1,7 @@
 package models;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
@@ -79,6 +81,16 @@ public class Produto extends Model {
 		this.unidade = unidade;
 	}
 	
+	public static List<Produto> findAll()
+	{
+		return find.all();
+	}
 	
+	public static Produto findById(Long id)
+	{
+		return find.byId(id);
+	}
 
 }
+
+

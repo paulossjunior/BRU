@@ -2,7 +2,9 @@ package controllers;
 
 import java.util.List;
 
+
 import models.Campus;
+import models.GerenteCompra;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -11,6 +13,8 @@ import views.html.*;
 
 public class ControleCampus extends Controller {
 
+	private static final Form<Campus> CampusForm = Form.form(Campus.class);
+	
 	public static Result index() {
 
 		List<Campus> campi = Campus.find.all();
@@ -20,7 +24,7 @@ public class ControleCampus extends Controller {
 	
 	
 	public static Result novo() {
-        return ok(CadastrarCampus.render(new Campus()));
+        return ok(CadastrarCampus.render(CampusForm));
 	}
 	
 	public static Result salvar()
@@ -39,7 +43,7 @@ public class ControleCampus extends Controller {
 	{
 		Campus campus = Campus.find.byId(id);
 		
-		return ok(CadastrarCampus.render(campus));
+		return ok(CadastrarCampus.render(CampusForm));
 	}
 	
 	public static Result excluir(Long id)

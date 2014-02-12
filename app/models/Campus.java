@@ -1,6 +1,8 @@
 package models;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -45,6 +47,25 @@ public class Campus extends Model {
 
 	public void setGerentesCompra(List<GerenteCompra> gerenteCompra) {
 		this.gerentesCompra = gerenteCompra;
+	}
+	
+	public static Map<String, String> fCampus() {
+		LinkedHashMap<String, String> vals = new LinkedHashMap<String, String>();
+
+		for (Campus campi: find.all()) {
+			vals.put(campi.getId().toString(), campi.getNome());
+		}
+		return vals;
+
+	}
+	public static List<Campus> findAll()
+	{
+		return find.all();
+	}
+	
+	public static Campus findById(Long id)
+	{
+		return find.byId(id);
 	}
 
 }

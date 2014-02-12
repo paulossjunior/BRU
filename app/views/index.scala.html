@@ -1,14 +1,66 @@
-@(message : String)
-@main("Bem vindo ao BRU") {
+@(usuarioForm: Form[GerenteCompra]) 
+@import helper._ 
+@import helper.twitterBootstrap._ 
+@main("BRU ::..") {
 
-<p>Tela principal do BRU</p> 
-
+<div class="row">
+	<div class="col-md-4 col-md-offset-4">
+		<div class="login-panel panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">BRU</h3>
+			</div>
+			@if(usuarioForm.hasErrors) {
+		        <div class="alert alert-danger">
+		        	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		            <p><strong>Oops!!! ... </strong></p>
+		            @if(flash.contains("error")){
+						<div class="alert alert-error">
+						@flash.get("error")
+						</div>
+				}
+		        </div>
+		    }
+		    
+		    @if(flash.contains("success")){
+		    
+			    <div class="alert alert-warning alert-dismissable">
+	  			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	  				<strong>@Messages("success")</strong> @flash.get("success") 
+				</div>
+		    }
+		    
+			<div class="panel-body">
+				@helper.form(action = routes.Application.signIn()) {
+				<fieldset>
+					<div class="form-group">@helper.inputText(
+						usuarioForm("email"), '_label -> "E-mail", '_showConstraints ->
+						false, 'placeholder -> "e-mail", 'class ->"form-control" )
+					</div>
+		
+					<div class="form-group">@helper.inputPassword(
+						usuarioForm("senha"), '_label -> "Senha", '_showConstraints ->
+						false, 'placeholder -> "senha", 'class ->"form-control" )
+					</div>
+				</fieldset>
+				<input type="submit" class="btn btn-lg btn-success btn-block"
+					value="Entrar"> 
+				}
+			</div>
+		</div>
+		
+	</div>
+	
+</div>
 <p><a href="@routes.ControleCategoria.index"> Cadastrar Categoria </a></p>
  
 <p><a href="@routes.ControleGerenteCompra.index"> Cadastrar Gerente </a></p>
 
 <p><a href="@routes.ControleCampus.index"> Cadastrar Campus </a></p>
 
-}
+<p><a href="@routes.ControleUnidade.index"> Cadastrar Unidade </a></p>
 
+<p><a href="@routes.ControleProduto.index"> Cadastrar Produto </a></p>
+
+
+}
 
