@@ -1,7 +1,7 @@
 @(UnidadeForm: Form[Unidade])
 @import helper._ 
 @import helper.twitterBootstrap._
-@main("Welcome to Play") {
+@main("Bem vindo ao BLU") {
 
 <div id="wrapper">
 
@@ -69,6 +69,13 @@
 						'_label -> "Nome",
 						'_showConstraints -> false
 						) 
+					
+					@helper.inputText(
+						UnidadeForm("id"),
+						'_label -> "",
+						'style -> "display: none"
+						) 
+						
 					
 				</fieldset>   
 				     <div class="actions">

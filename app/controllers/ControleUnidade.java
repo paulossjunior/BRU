@@ -1,19 +1,18 @@
 package controllers;
 
-import models.Campus;
-import models.Unidade;
-
 import java.util.List;
 
+import models.Unidade;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.*;
+import views.html.CadastrarUnidade;
+import views.html.indexUnidade;
 
 
 public class ControleUnidade extends Controller {
 	
-	private static final Form<Unidade> UnidadeForm = Form.form(Unidade.class);
+	private static final Form<Unidade> unidadeForm = Form.form(Unidade.class);
 	
 	public static Result index(){
 		
@@ -22,16 +21,19 @@ public class ControleUnidade extends Controller {
 		return ok(indexUnidade.render(unidades));
 	}
 	public static Result indexCadastrar(){
-		return ok(CadastrarUnidade.render(UnidadeForm));
+		return ok(CadastrarUnidade.render(unidadeForm));
 	}
 	public static Result salvar()
 	{
 	
 		Unidade unidade = Form.form(Unidade.class).bindFromRequest().get();
-		if (unidade.getId()!= null)
+		if (unidade.getId() != null) {
+			flash("success", "Unidade Atualizada");
 			unidade.update();
-		else
+		} else {
 			unidade.save();
+			flash("success", "Unidade Criada");
+		}
 		
 		return redirect (routes.ControleUnidade.index());
 	}
@@ -40,7 +42,10 @@ public class ControleUnidade extends Controller {
 	{
 		Unidade unidade= Unidade.findById(id);
 		
-		return ok(CadastrarUnidade.render(UnidadeForm));
+		//preenchendo o formulario com os dados do objeto
+		Form<Unidade> unidadeEditarForm = unidadeForm.fill(unidade);
+		    
+		return ok(CadastrarUnidade.render(unidadeEditarForm));
 	}
 	
 	public static Result excluir(Long id)

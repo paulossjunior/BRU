@@ -3,7 +3,16 @@
  @import helper.twitterBootstrap._ 
  @main("Campus") { 
 
+@if(flash.contains("success")){
 
+<div class="alert alert-warning alert-dismissable">
+	<button type="button" class="close" data-dismiss="alert"
+		aria-hidden="true">&times;</button>
+	<strong>Mensagem:</strong> @flash.get("success")
+</div>
+
+
+}
 <div id="wrapper">
 
 	<nav class="navbar navbar-default navbar-static-top" role="navigation"
@@ -74,9 +83,9 @@
 						<td><a href="@routes.ControleCampus.editar(campus.getId())">Editar</a>|
 							<a href="@routes.ControleCampus.excluir(campus.getId())">Excluir</a></td>
 					</tr>
-					</table>
+					
 					}
-
+					</table>
 
 					<!-- /.panel -->
 			</div>

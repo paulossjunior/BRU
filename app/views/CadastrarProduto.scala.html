@@ -65,21 +65,31 @@
 				@helper.form(action = routes.ControleProduto.salvar()) {
 				<fieldset>
 					@helper.inputText(
+						ProdutoForm("id"),
+						'_label -> "",
+						'style -> "display: none"
+						)
+					
+					@helper.inputText(
 						ProdutoForm("nome"),
 						'_label -> "Nome",
 						'_showConstraints -> false
 						) 
-					@helper.inputText(
+					@helper.textarea(
 						ProdutoForm("descricao"),
-						'_label -> "Descricao",
-						'_showConstraints -> false
+						'_label -> "Descrição",
+						'_showConstraints -> false,
+						'rows -> 3, 
+						'cols -> 50 
 					)
 					
 					@helper.inputText(
 						ProdutoForm("numeroComprasNet"),
-						'_label -> "numeroComprasNet",
+						'_label -> "Número no ComprasNet",
 						'_showConstraints -> false
-						) 
+						)
+						 
+					
 					
 					@select(ProdutoForm("categoria.id"),
 				     options(models.Categoria.categorias),
@@ -94,6 +104,8 @@
 				     'id -> "unidade",
 				     '_label -> "Unidades",
 				     '_showConstraints -> false)
+				     
+				     
 					
 				</fieldset>   
 				     <div class="actions">

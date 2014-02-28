@@ -12,8 +12,7 @@ import views.html.*;
 
 public class ControleProduto extends Controller {
 
-	private static final Form<Produto> ProdutoForm = Form
-			.form(Produto.class);
+	private static final Form<Produto> produtoForm = Form.form(Produto.class);
 
 	public static Result index() {
 
@@ -23,11 +22,11 @@ public class ControleProduto extends Controller {
 	}
 
 	public static Result indexCadastrar() {
-		return ok(CadastrarProduto.render(ProdutoForm));
+		return ok(CadastrarProduto.render(produtoForm));
 	}
 
 	public static Result salvar() {
-		Form<Produto> boundForm = ProdutoForm.bindFromRequest();
+		Form<Produto> boundForm = produtoForm.bindFromRequest();
 
 		// Buscando os dados do formulario
 		Produto produto = boundForm.get();
@@ -47,7 +46,13 @@ public class ControleProduto extends Controller {
 
 		produto.setUnidade(newunidade);
 		produto.setCategoria(newcategoria);
-		produto.save();
+		if (produto.getId() != null) {
+			flash("success", "Produto Atualizado");
+			produto.update();
+		} else {
+			produto.save();
+			flash("success", "Produto Criado");
+		}
 
 		return redirect(routes.ControleProduto.index());
 	}
@@ -55,9 +60,10 @@ public class ControleProduto extends Controller {
 	public static Result editar(Long id) {
 		Produto produto = Produto.findById(id);
 
-		ProdutoForm.fill(produto);
+		// preenchendo o formulario com os dados do objeto
+		Form<Produto> produtoEditarForm = produtoForm.fill(produto);
 
-		return ok(CadastrarProduto.render(ProdutoForm));
+		return ok(CadastrarProduto.render(produtoEditarForm));
 	}
 
 	public static Result excluir(Long id) {
@@ -69,4 +75,3 @@ public class ControleProduto extends Controller {
 	}
 
 }
-	

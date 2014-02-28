@@ -64,6 +64,11 @@
 				@helper.form(action = routes.ControleGerenteCompra.salvar()) {
 				<fieldset>
 					@helper.inputText(
+						GerenteCompraForm("id"),
+						'_label -> "",
+						'style -> "display: none"
+						)				
+					@helper.inputText(
 						GerenteCompraForm("nome"),
 						'_label -> "Nome",
 						'_showConstraints -> false

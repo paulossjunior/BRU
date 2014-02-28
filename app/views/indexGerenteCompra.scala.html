@@ -3,6 +3,16 @@
 @import helper.twitterBootstrap._ 
 @main("Cadastro Gerente Compras") {
 
+@if(flash.contains("success")){
+
+<div class="alert alert-warning alert-dismissable">
+	<button type="button" class="close" data-dismiss="alert"
+		aria-hidden="true">&times;</button>
+	<strong>Mensagem:</strong> @flash.get("success")
+</div>
+
+
+}
 <div id="wrapper">
 
 	<nav class="navbar navbar-default navbar-static-top" role="navigation"
